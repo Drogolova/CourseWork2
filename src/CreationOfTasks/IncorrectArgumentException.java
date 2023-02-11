@@ -1,3 +1,5 @@
+package CreationOfTasks;
+
 public class IncorrectArgumentException extends RuntimeException {
 
     private String argument;
@@ -12,7 +14,7 @@ public class IncorrectArgumentException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "IncorrectArgumentException{" +
+        return "CreationOfTasks.IncorrectArgumentException{" +
                 "argument='" + argument + '\'' +
                 '}';
     }

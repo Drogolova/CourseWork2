@@ -1,7 +1,9 @@
+package CreationOfTasks;
+
 public class TaskNotFoundException extends NullPointerException {
 
     @Override
     public String toString() {
-        return "TaskNotFoundException{}";
+        return "CreationOfTasks.TaskNotFoundException{}";
     }
 }

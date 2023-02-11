@@ -1,6 +1,9 @@
+import CreationOfTasks.*;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -8,11 +11,24 @@ public class Main {
     public static void main(String[] args) {
 
         TaskService taskService = new TaskService();
-        taskService.add(new OneTimeTask("Прочитать почту", Type.WORK, "Бесполезная трата времени"));
-        taskService.add(new WeeklyTask("Написать отчёт", Type.WORK, "отчёт по текущим задачам"));
-        taskService.add(new MonthlyTask("Провести собрание", Type.WORK, "подвести итоги"));
 
-        System.out.println(taskService.getAllGropeByDate());
+        DailyTask dailyTask = new DailyTask("проверка", Type.WORK,"выполнение периодичности",
+                LocalDateTime.of(2023, 02,02,20,15));
+
+        WeeklyTask weeklyTask = new WeeklyTask("проверка", Type.WORK,"выполнение периодичности",
+                LocalDateTime.of(2023, 02,02,20,15));
+
+        MonthlyTask monthlyTask = new MonthlyTask("проверка", Type.WORK,"выполнение периодичности",
+                LocalDateTime.of(2023, 02,02,20,15));
+
+        YearlyTask yearlyTask = new YearlyTask("проверка", Type.WORK,"выполнение периодичности",
+                LocalDateTime.of(2023, 02,02,20,15));
+
+        //System.out.println(dailyTask.getPeriodic(LocalDate.now()));
+        //System.out.println(weeklyTask.getPeriodic(LocalDate.now()));
+        //System.out.println(monthlyTask.getPeriodic(LocalDate.now()));
+        //System.out.println(yearlyTask.getPeriodic(LocalDate.now()));
+
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -31,7 +47,9 @@ public class Main {
                     taskService.add(task);
                     break;
                 case (2):
-                    System.out.println(taskService.getAllByDate(LocalDate.now()));
+                    System.out.println("Введите дату в формате гггг-мм-дд: ");
+                    LocalDate date = LocalDate.parse(scanner.next());
+                    System.out.println(taskService.getAllByDate(date));
                     break;
                 case (3):
                     final Task removed = taskService.remove(readId());
@@ -61,22 +79,26 @@ public class Main {
                 "4. Ежемесячная" + "\n" +
                 "5.Ежегодная");
         int periodic = scanner.nextInt();
+        System.out.println("Введите дату начала выполнения задачи в формате гггг-мм-дд: ");
+        LocalDate date = LocalDate.parse(scanner.next());
+        System.out.println("Введите время начала выполнения задачи в формате 00:00 : ");
+        LocalTime time = LocalTime.parse(scanner.next());
         Task task = null;
         switch (periodic) {
             case (1):
-                task = new OneTimeTask(title, type, description);
+                task = new OneTimeTask(title, type, description, LocalDateTime.of(date,time));
                 break;
             case (2):
-                task = new DailyTask(title, type, description);
+                task = new DailyTask(title, type, description, LocalDateTime.of(date,time));
                 break;
             case (3):
-                task = new WeeklyTask(title, type, description);
+                task = new WeeklyTask(title, type, description, LocalDateTime.of(date,time));
                 break;
             case (4):
-                task = new MonthlyTask(title, type, description);
+                task = new MonthlyTask(title, type, description, LocalDateTime.of(date,time));
                 break;
             case (5):
-                task = new YearlyTask(title, type, description);
+                task = new YearlyTask(title, type, description, LocalDateTime.of(date,time));
                 break;
             default:
                 System.out.println("Введено некоректное значение");

@@ -1,5 +1,7 @@
+import CreationOfTasks.Task;
+import CreationOfTasks.TaskNotFoundException;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,7 @@ public class TaskService {
     }
 
     public Collection<Task> getAllByDate(LocalDate localDate) {
+        System.out.println("Задачи на: " + localDate);
         return taskMap.values().stream().filter(task -> task.appearsIn(localDate)).collect(Collectors.toList());
     }
 

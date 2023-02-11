@@ -1,8 +1,8 @@
-import java.time.Clock;
+package CreationOfTasks;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
 import java.util.Objects;
 
 public abstract class Task {
@@ -11,11 +11,11 @@ public abstract class Task {
     private String title;
     private final Type type;
     private final int id;
-    private final LocalDateTime dateTime;
+    private LocalDateTime dateTime;
     private String description;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy HH:mm:ss");
-    public Task(String title, Type type, String description) {
+    public Task(String title, Type type, String description, LocalDateTime dateTime) {
         if (title == null) {
             throw new IncorrectArgumentException("title");
         }
@@ -29,7 +29,8 @@ public abstract class Task {
         this.type = type;
         this.description = description;
         this.id = idGenerator++;
-        this.dateTime = LocalDateTime.now();
+        this.dateTime = dateTime;
+
     }
 
     public String getTitle() {
@@ -48,6 +49,11 @@ public abstract class Task {
         return id;
     }
 
+    public void setDateTime(int year) {
+
+        this.dateTime = dateTime;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -59,6 +65,8 @@ public abstract class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
