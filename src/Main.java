@@ -16,18 +16,24 @@ public class Main {
                 LocalDateTime.of(2023, 02,02,20,15));
 
         WeeklyTask weeklyTask = new WeeklyTask("проверка", Type.WORK,"выполнение периодичности",
-                LocalDateTime.of(2023, 02,02,20,15));
+                LocalDateTime.of(2023, 02,05,20,15));
 
         MonthlyTask monthlyTask = new MonthlyTask("проверка", Type.WORK,"выполнение периодичности",
-                LocalDateTime.of(2023, 02,02,20,15));
+                LocalDateTime.of(2023, 01,12,20,15));
 
         YearlyTask yearlyTask = new YearlyTask("проверка", Type.WORK,"выполнение периодичности",
-                LocalDateTime.of(2023, 02,02,20,15));
+                LocalDateTime.of(2022, 02,12,20,15));
 
-        //System.out.println(dailyTask.getPeriodic(LocalDate.now()));
-        //System.out.println(weeklyTask.getPeriodic(LocalDate.now()));
-        //System.out.println(monthlyTask.getPeriodic(LocalDate.now()));
-        //System.out.println(yearlyTask.getPeriodic(LocalDate.now()));
+
+        taskService.add(dailyTask);
+        taskService.add(weeklyTask);
+        taskService.add(monthlyTask);
+        taskService.add(yearlyTask);
+
+/*        System.out.println(dailyTask.appearsIn(LocalDate.now()));
+        System.out.println(monthlyTask.appearsIn(LocalDate.now()));
+        System.out.println(weeklyTask.appearsIn(LocalDate.now()));
+        System.out.println(yearlyTask.appearsIn(LocalDate.now()));*/
 
 
         while (true) {
